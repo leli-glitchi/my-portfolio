@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Allelie Pamela S. Imasa - Data Entry Specialist Portfolio</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Tailwind Configuration -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        playfair: ['"Playfair Display"', 'serif'],
+                    },
+                    animation: {
+                        'fade-in-down': 'fadeInDown 0.5s ease-out',
+                        'bounce-slow': 'bounce 3s infinite',
+                        'bounce-delayed': 'bounce 3s infinite 1.5s',
+                        'blob': 'blob 7s infinite',
+                    },
+                    keyframes: {
+                        fadeInDown: {
+                            '0%': { opacity: '0', transform: 'translateY(-10px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        },
+                        blob: {
+                            '0%': { transform: 'translate(0px, 0px) scale(1)' },
+                            '33%': { transform: 'translate(30px, -50px) scale(1.1)' },
+                            '66%': { transform: 'translate(-20px, 20px) scale(0.9)' },
+                            '100%': { transform: 'translate(0px, 0px) scale(1)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Custom Utilities */
+        .selection-teal::selection {
+            background-color: #ccfbf1; /* teal-100 */
+            color: #134e4a; /* teal-900 */
+        }
+        body {
+            -webkit-font-smoothing: antialiased;
+        }
+    </style>
+</head>
+<body class="min-h-screen bg-neutral-50 font-sans text-slate-800 selection-teal relative">
+
+    <!-- Notification Toast -->
+    <div id="notification" class="fixed top-6 right-6 bg-teal-800 text-white px-6 py-3 rounded-full shadow-2xl z-50 animate-fade-in-down flex items-center hidden transition-opacity duration-300">
+        <i data-lucide="check-circle" class="w-4 h-4 mr-2"></i>
+        <span id="notification-text">Notification</span>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="fixed w-full bg-white/90 backdrop-blur-md shadow-sm z-40 transition-all duration-300">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20 items-center">
+                <div class="flex-shrink-0 flex items-center">
+                    <span class="font-playfair font-bold text-2xl text-slate-800 tracking-tight">Al<span class="text-teal-500">i</span></span>
+                </div>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex space-x-10">
+                    <a href="#home" class="nav-link text-teal-700 font-semibold text-sm uppercase tracking-wider transition-colors duration-200" data-section="home">Home</a>
+                    <a href="#skills" class="nav-link text-slate-500 hover:text-teal-600 text-sm uppercase tracking-wider transition-colors duration-200" data-section="skills">Skills</a>
+                    <a href="#experience" class="nav-link text-slate-500 hover:text-teal-600 text-sm uppercase tracking-wider transition-colors duration-200" data-section="experience">Experience</a>
+                    <a href="#education" class="nav-link text-slate-500 hover:text-teal-600 text-sm uppercase tracking-wider transition-colors duration-200" data-section="education">Education</a>
+                    <a href="#contact" class="nav-link text-slate-500 hover:text-teal-600 text-sm uppercase tracking-wider transition-colors duration-200" data-section="contact">Contact</a>
+                </div>
+
+                <!-- Mobile menu button -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-slate-500 hover:text-slate-700 focus:outline-none">
+                        <i data-lucide="menu" id="menu-icon" class="w-6 h-6"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-slate-100 absolute w-full shadow-lg">
+            <div class="px-4 pt-2 pb-6 space-y-2">
+                <a href="#home" class="mobile-link block w-full text-left px-4 py-3 text-base font-medium text-slate-600 hover:text-teal-600 hover:bg-slate-50 rounded-lg transition-colors">Home</a>
+                <a href="#skills" class="mobile-link block w-full text-left px-4 py-3 text-base font-medium text-slate-600 hover:text-teal-600 hover:bg-slate-50 rounded-lg transition-colors">Skills</a>
+                <a href="#experience" class="mobile-link block w-full text-left px-4 py-3 text-base font-medium text-slate-600 hover:text-teal-600 hover:bg-slate-50 rounded-lg transition-colors">Experience</a>
+                <a href="#education" class="mobile-link block w-full text-left px-4 py-3 text-base font-medium text-slate-600 hover:text-teal-600 hover:bg-slate-50 rounded-lg transition-colors">Education</a>
+                <a href="#contact" class="mobile-link block w-full text-left px-4 py-3 text-base font-medium text-slate-600 hover:text-teal-600 hover:bg-slate-50 rounded-lg transition-colors">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="pt-32 pb-24 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto overflow-hidden">
+        <div class="grid md:grid-cols-2 gap-12 lg:gap-20 items-center">
+            <!-- Text Content -->
+            <div class="space-y-8 order-2 md:order-1 relative z-10">
+                <div class="inline-flex items-center space-x-2 px-4 py-1.5 bg-teal-50 text-teal-800 text-xs font-bold uppercase tracking-widest rounded-full border border-teal-100">
+                    <span class="w-2 h-2 rounded-full bg-teal-500 animate-pulse"></span>
+                    <span>Available for Hire</span>
+                </div>
+                
+                <div>
+                    <h1 class="text-4xl md:text-6xl font-extrabold text-slate-900 leading-tight mb-4">
+                        Precise.<br />
+                        Organized.<br />
+                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-teal-500 to-emerald-500">
+                            Reliable.
+                        </span>
+                    </h1>
+                    <p class="text-xl text-slate-500 font-medium">
+                        Allelie Pamela S. Imasa
+                    </p>
+                </div>
+
+                <p class="text-lg text-slate-600 leading-relaxed max-w-lg">
+                    Dedicated and detail-oriented professional with a strong background in administrative support and document management. Leveraging a BS in Psychology to bring high-level organizational skills, confidentiality, and accuracy to data entry roles. Proven ability to manage records, compile complex reports, and support operational workflows.
+                </p>
+
+                <div class="flex flex-wrap gap-4">
+                    <a href="#contact" class="px-8 py-4 bg-slate-900 text-white font-medium rounded-full shadow-lg hover:bg-slate-800 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex items-center">
+                        Contact Me <i data-lucide="chevron-right" class="ml-2 w-4 h-4"></i>
+                    </a>
+                    <button onclick="copyToClipboard('leliesamper@gmail.com', 'Email')" class="px-8 py-4 bg-white border border-slate-200 text-slate-700 font-medium rounded-full hover:bg-slate-50 hover:border-slate-300 transition-all duration-300 flex items-center shadow-sm">
+                        <i data-lucide="mail" class="mr-2 w-4 h-4"></i> Copy Email
+                    </button>
+                </div>
+            </div>
+
+            <!-- Image Placeholder / Visuals -->
+            <div class="relative order-1 md:order-2 flex justify-center md:justify-end">
+                <!-- Abstract Blobs -->
+                <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-gradient-to-tr from-teal-100 to-purple-50 rounded-full blur-3xl opacity-60 -z-10"></div>
+                
+                <!-- PHOTO PLACEHOLDER -->
+                <div class="relative w-72 h-72 md:w-96 md:h-96">
+                  <div class="w-full h-full rounded-[2rem] bg-slate-200 border-4 border-white shadow-2xl overflow-hidden relative group">
+    <!-- Image -->
+    <img src="me.jpg" alt="Allelie Pamela S. Imasa" class="w-full h-full object-cover object-center">
+    
+    <!-- Overlay -->
+    <div class="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent pointer-events-none"></div>
+</div>
+
+                    <!-- Floating Badge 1 -->
+                    <div class="absolute -bottom-6 -left-6 bg-white p-4 rounded-xl shadow-lg border border-slate-50 flex items-center gap-3 animate-bounce-slow">
+                        <div class="p-2 bg-teal-100 rounded-lg text-teal-600">
+                            <i data-lucide="check-circle" class="w-5 h-5"></i>
+                        </div>
+                        <div>
+                            <p class="text-xs text-slate-400 font-bold uppercase">Accuracy</p>
+                            <p class="text-sm font-bold text-slate-800">100% Verified</p>
+                        </div>
+                    </div>
+
+                    <!-- Floating Badge 2 -->
+                    <div class="absolute -top-6 -right-6 bg-white p-4 rounded-xl shadow-lg border border-slate-50 flex items-center gap-3 animate-bounce-delayed">
+                        <div class="p-2 bg-indigo-100 rounded-lg text-indigo-600">
+                            <i data-lucide="database" class="w-5 h-5"></i>
+                        </div>
+                        <div>
+                            <p class="text-xs text-slate-400 font-bold uppercase">Focus</p>
+                            <p class="text-sm font-bold text-slate-800">Data Mgmt</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="py-24 bg-white relative">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <span class="text-teal-600 font-bold tracking-wider uppercase text-sm">Capabilities</span>
+                <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mt-2">Technical Proficiency</h2>
+                <div class="w-16 h-1 bg-teal-500 mx-auto mt-6 rounded-full"></div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                
+                <!-- Skill 1: Microsoft Office -->
+                <div class="group p-6 bg-white rounded-2xl border border-slate-100 shadow-sm hover:shadow-xl hover:border-teal-100 transition-all duration-300 flex flex-col items-center">
+                    <div class="flex items-center space-x-3 mb-6">
+                        <div class="p-2 bg-slate-50 rounded-lg text-slate-600 group-hover:text-teal-600 transition-colors">
+                            <i data-lucide="file-spreadsheet" class="w-5 h-5"></i>
+                        </div>
+                        <h3 class="font-bold text-slate-800 text-lg">Microsoft Office</h3>
+                    </div>
+                    <div class="grid grid-cols-3 gap-4 w-full">
+                        <div class="flex flex-col items-center text-center space-y-2">
+                            <div class="w-14 h-14 rounded-2xl flex items-center justify-center transition-transform hover:scale-110 shadow-sm bg-green-100 text-green-700">
+                                <i data-lucide="file-spreadsheet" class="w-6 h-6"></i>
+                            </div>
+                            <span class="text-xs font-semibold text-slate-600">Excel</span>
+                        </div>
+                        <div class="flex flex-col items-center text-center space-y-2">
+                            <div class="w-14 h-14 rounded-2xl flex items-center justify-center transition-transform hover:scale-110 shadow-sm bg-blue-100 text-blue-700">
+                                <i data-lucide="file-text" class="w-6 h-6"></i>
+                            </div>
+                            <span class="text-xs font-semibold text-slate-600">Word</span>
+                        </div>
+                        <div class="flex flex-col items-center text-center space-y-2">
+                            <div class="w-14 h-14 rounded-2xl flex items-center justify-center transition-transform hover:scale-110 shadow-sm bg-orange-100 text-orange-700">
+                                <i data-lucide="monitor" class="w-6 h-6"></i>
+                            </div>
+                            <span class="text-xs font-semibold text-slate-600">PowerPoint</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Skill 2: Google Workspace -->
+                <div class="group p-6 bg-white rounded-2xl border border-slate-100 shadow-sm hover:shadow-xl hover:border-teal-100 transition-all duration-300 flex flex-col items-center">
+                    <div class="flex items-center space-x-3 mb-6">
+                        <div class="p-2 bg-slate-50 rounded-lg text-slate-600 group-hover:text-teal-600 transition-colors">
+                            <i data-lucide="cloud" class="w-5 h-5"></i>
+                        </div>
+                        <h3 class="font-bold text-slate-800 text-lg">Google Workspace</h3>
+                    </div>
+                    <div class="grid grid-cols-3 gap-4 w-full">
+                        <div class="flex flex-col items-center text-center space-y-2">
+                            <div class="w-14 h-14 rounded-2xl flex items-center justify-center transition-transform hover:scale-110 shadow-sm bg-green-50 text-green-600">
+                                <i data-lucide="table" class="w-6 h-6"></i>
+                            </div>
+                            <span class="text-xs font-semibold text-slate-600">Sheets</span>
+                        </div>
+                        <div class="flex flex-col items-center text-center space-y-2">
+                            <div class="w-14 h-14 rounded-2xl flex items-center justify-center transition-transform hover:scale-110 shadow-sm bg-blue-50 text-blue-600">
+                                <i data-lucide="file-text" class="w-6 h-6"></i>
+                            </div>
+                            <span class="text-xs font-semibold text-slate-600">Docs</span>
+                        </div>
+                        <div class="flex flex-col items-center text-center space-y-2">
+                            <div class="w-14 h-14 rounded-2xl flex items-center justify-center transition-transform hover:scale-110 shadow-sm bg-purple-50 text-purple-600">
+                                <i data-lucide="check-square" class="w-6 h-6"></i>
+                            </div>
+                            <span class="text-xs font-semibold text-slate-600">Forms</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Skill 3: CRM & ERP -->
+                <div class="group p-6 bg-white rounded-2xl border border-slate-100 shadow-sm hover:shadow-xl hover:border-teal-100 transition-all duration-300 flex flex-col items-center">
+                    <div class="flex items-center space-x-3 mb-6">
+                        <div class="p-2 bg-slate-50 rounded-lg text-slate-600 group-hover:text-teal-600 transition-colors">
+                            <i data-lucide="database" class="w-5 h-5"></i>
+                        </div>
+                        <h3 class="font-bold text-slate-800 text-lg">CRM & ERP</h3>
+                    </div>
+                    <div class="grid grid-cols-2 gap-3 w-full">
+                    
+                        <div class="flex flex-col items-center text-center space-y-2">
+                            <div class="w-14 h-14 rounded-2xl flex items-center justify-center transition-transform hover:scale-110 shadow-sm bg-orange-50 text-orange-600">
+                                <i data-lucide="target" class="w-6 h-6"></i>
+                            </div>
+                            <span class="text-xs font-semibold text-slate-600">HubSpot</span>
+                        </div>
+                        <div class="flex flex-col items-center text-center space-y-2">
+                            <div class="w-14 h-14 rounded-2xl flex items-center justify-center transition-transform hover:scale-110 shadow-sm bg-indigo-50 text-indigo-600">
+                                <i data-lucide="database" class="w-6 h-6"></i>
+                            </div>
+                            <span class="text-xs font-semibold text-slate-600">GoHighLevel</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Skill 4: Data Entry -->
+                <div class="group p-6 bg-white rounded-2xl border border-slate-100 shadow-sm hover:shadow-xl hover:border-teal-100 transition-all duration-300 flex flex-col items-center">
+                    <div class="flex items-center space-x-3 mb-6">
+                        <div class="p-2 bg-slate-50 rounded-lg text-slate-600 group-hover:text-teal-600 transition-colors">
+                            <i data-lucide="keyboard" class="w-5 h-5"></i>
+                        </div>
+                        <h3 class="font-bold text-slate-800 text-lg">Data Entry</h3>
+                    </div>
+                    <div class="grid grid-cols-3 gap-4 w-full">
+                        <div class="flex flex-col items-center text-center space-y-2">
+                            <div class="w-14 h-14 rounded-2xl flex items-center justify-center transition-transform hover:scale-110 shadow-sm bg-slate-100 text-slate-700">
+                                <i data-lucide="keyboard" class="w-6 h-6"></i>
+                            </div>
+                            <span class="text-xs font-semibold text-slate-600">Typing (70+)</span>
+                        </div>
+                        <div class="flex flex-col items-center text-center space-y-2">
+                            <div class="w-14 h-14 rounded-2xl flex items-center justify-center transition-transform hover:scale-110 shadow-sm bg-slate-100 text-slate-700">
+                                <i data-lucide="calculator" class="w-6 h-6"></i>
+                            </div>
+                            <span class="text-xs font-semibold text-slate-600">10-Key</span>
+                        </div>
+                        <div class="flex flex-col items-center text-center space-y-2">
+                            <div class="w-14 h-14 rounded-2xl flex items-center justify-center transition-transform hover:scale-110 shadow-sm bg-teal-50 text-teal-600">
+                                <i data-lucide="check-circle" class="w-6 h-6"></i>
+                            </div>
+                            <span class="text-xs font-semibold text-slate-600">Accuracy</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Skill 5: Project Mgmt -->
+                <div class="group p-6 bg-white rounded-2xl border border-slate-100 shadow-sm hover:shadow-xl hover:border-teal-100 transition-all duration-300 flex flex-col items-center">
+                    <div class="flex items-center space-x-3 mb-6">
+                        <div class="p-2 bg-slate-50 rounded-lg text-slate-600 group-hover:text-teal-600 transition-colors">
+                            <i data-lucide="briefcase" class="w-5 h-5"></i>
+                        </div>
+                        <h3 class="font-bold text-slate-800 text-lg">Project Mgmt</h3>
+                    </div>
+                    <div class="grid grid-cols-3 gap-4 w-full">
+                        <div class="flex flex-col items-center text-center space-y-2">
+                            <div class="w-14 h-14 rounded-2xl flex items-center justify-center transition-transform hover:scale-110 shadow-sm bg-red-50 text-red-500">
+                                <i data-lucide="check-circle" class="w-6 h-6"></i>
+                            </div>
+                            <span class="text-xs font-semibold text-slate-600">Asana</span>
+                        </div>
+                        <div class="flex flex-col items-center text-center space-y-2">
+                            <div class="w-14 h-14 rounded-2xl flex items-center justify-center transition-transform hover:scale-110 shadow-sm bg-blue-50 text-blue-500">
+                                <i data-lucide="columns" class="w-6 h-6"></i>
+                            </div>
+                            <span class="text-xs font-semibold text-slate-600">Trello</span>
+                        </div>
+                        <div class="flex flex-col items-center text-center space-y-2">
+                            <div class="w-14 h-14 rounded-2xl flex items-center justify-center transition-transform hover:scale-110 shadow-sm bg-slate-100 text-slate-800">
+                                <i data-lucide="file-text" class="w-6 h-6"></i>
+                            </div>
+                            <span class="text-xs font-semibold text-slate-600">Notion</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Skill 6: Collaboration -->
+                <div class="group p-6 bg-white rounded-2xl border border-slate-100 shadow-sm hover:shadow-xl hover:border-teal-100 transition-all duration-300 flex flex-col items-center">
+                    <div class="flex items-center space-x-3 mb-6">
+                        <div class="p-2 bg-slate-50 rounded-lg text-slate-600 group-hover:text-teal-600 transition-colors">
+                            <i data-lucide="users" class="w-5 h-5"></i>
+                        </div>
+                        <h3 class="font-bold text-slate-800 text-lg">Collaboration</h3>
+                    </div>
+                    <div class="grid grid-cols-3 gap-4 w-full">
+                        <div class="flex flex-col items-center text-center space-y-2">
+                            <div class="w-14 h-14 rounded-2xl flex items-center justify-center transition-transform hover:scale-110 shadow-sm bg-purple-50 text-purple-600">
+                                <i data-lucide="hash" class="w-6 h-6"></i>
+                            </div>
+                            <span class="text-xs font-semibold text-slate-600">Slack</span>
+                        </div>
+                        <div class="flex flex-col items-center text-center space-y-2">
+                            <div class="w-14 h-14 rounded-2xl flex items-center justify-center transition-transform hover:scale-110 shadow-sm bg-indigo-50 text-indigo-600">
+                                <i data-lucide="users" class="w-6 h-6"></i>
+                            </div>
+                            <span class="text-xs font-semibold text-slate-600">Teams</span>
+                        </div>
+                        <div class="flex flex-col items-center text-center space-y-2">
+                            <div class="w-14 h-14 rounded-2xl flex items-center justify-center transition-transform hover:scale-110 shadow-sm bg-blue-50 text-blue-500">
+                                <i data-lucide="video" class="w-6 h-6"></i>
+                            </div>
+                            <span class="text-xs font-semibold text-slate-600">Zoom</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="py-24 bg-slate-50">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <span class="text-teal-600 font-bold tracking-wider uppercase text-sm">Career Path</span>
+                <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mt-2">Work History</h2>
+            </div>
+            
+            <div class="space-y-8">
+                
+             <!-- Job 1 -->
+<div class="group relative bg-white p-8 rounded-2xl shadow-sm border border-slate-100 hover:shadow-md transition-shadow">
+    <div class="absolute left-0 top-8 bottom-8 w-1 bg-teal-500 rounded-r-full opacity-0 group-hover:opacity-100 transition-opacity"></div>
+    <div class="flex flex-col md:flex-row md:items-start md:justify-between mb-4">
+        <div>
+            <h3 class="text-xl font-bold text-slate-900">Clerk, Construction Department</h3>
+            <h4 class="text-lg font-medium text-teal-600 mt-1">Grandspan Development Corporation</h4>
+        </div>
+        <div class="mt-2 md:mt-0 inline-flex items-center px-3 py-1 rounded-full bg-slate-100 text-slate-600 text-sm font-medium">
+            October 2024 – January 2026
+        </div>
+    </div>
+    <p class="text-slate-500 mb-6 italic">Specializing in high-volume data processing, reporting, and digital archiving.</p>
+    <div class="grid md:grid-cols-1 gap-3">
+        <div class="flex items-start">
+            <div class="min-w-[20px] pt-1"><div class="w-1.5 h-1.5 rounded-full bg-teal-400"></div></div>
+            <span class="text-slate-700 leading-relaxed">Synthesized raw construction data into executive summaries using <strong>Microsoft Excel (PivotTables, VLOOKUP)</strong> for the President's review.</span>
+        </div>
+        <div class="flex items-start">
+            <div class="min-w-[20px] pt-1"><div class="w-1.5 h-1.5 rounded-full bg-teal-400"></div></div>
+            <span class="text-slate-700 leading-relaxed">Digitized and archived over 500+ physical records using <strong>OCR software (Adobe Acrobat)</strong> and <strong>Cloud Storage (Google Drive)</strong>, ensuring zero data loss.</span>
+        </div>
+        <div class="flex items-start">
+            <div class="min-w-[20px] pt-1"><div class="w-1.5 h-1.5 rounded-full bg-teal-400"></div></div>
+            <span class="text-slate-700 leading-relaxed">Managed the internal <strong>Project Database</strong> to track document lifecycles, maintaining 100% accuracy in data entry and retrieval.</span>
+        </div>
+        <div class="flex items-start">
+            <div class="min-w-[20px] pt-1"><div class="w-1.5 h-1.5 rounded-full bg-teal-400"></div></div>
+            <span class="text-slate-700 leading-relaxed">Streamlined administrative workflows by utilizing <strong>Google Workspace tools (Docs, Sheets)</strong> for real-time collaboration and reporting.</span>
+        </div>
+    </div>
+</div>
+                <!-- Job 2 -->
+                <div class="group relative bg-white p-8 rounded-2xl shadow-sm border border-slate-100 hover:shadow-md transition-shadow">
+                    <div class="absolute left-0 top-8 bottom-8 w-1 bg-teal-500 rounded-r-full opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                    <div class="flex flex-col md:flex-row md:items-start md:justify-between mb-4">
+                        <div>
+                            <h3 class="text-xl font-bold text-slate-900">HR Intern (Recruitment)</h3>
+                            <h4 class="text-lg font-medium text-teal-600 mt-1">B-MIRK Enterprises Corporation</h4>
+                        </div>
+                        <div class="mt-2 md:mt-0 inline-flex items-center px-3 py-1 rounded-full bg-slate-100 text-slate-600 text-sm font-medium">
+                            Feb 2024 – April 2024
+                        </div>
+                    </div>
+                    <p class="text-slate-500 mb-6 italic">Managed candidate data and recruitment workflows.</p>
+                    <div class="grid md:grid-cols-1 gap-3">
+                        <div class="flex items-start">
+                            <div class="min-w-[20px] pt-1"><div class="w-1.5 h-1.5 rounded-full bg-teal-400"></div></div>
+                            <span class="text-slate-700 leading-relaxed">Coordinated recruitment efforts including job posting and candidate database management.</span>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="min-w-[20px] pt-1"><div class="w-1.5 h-1.5 rounded-full bg-teal-400"></div></div>
+                            <span class="text-slate-700 leading-relaxed">Screened applicant profiles and maintained accurate candidate records.</span>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="min-w-[20px] pt-1"><div class="w-1.5 h-1.5 rounded-full bg-teal-400"></div></div>
+                            <span class="text-slate-700 leading-relaxed">Managed the overall recruitment process documentation in collaboration with the HR department.</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Job 3 -->
+                <div class="group relative bg-white p-8 rounded-2xl shadow-sm border border-slate-100 hover:shadow-md transition-shadow">
+                    <div class="absolute left-0 top-8 bottom-8 w-1 bg-teal-500 rounded-r-full opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                    <div class="flex flex-col md:flex-row md:items-start md:justify-between mb-4">
+                        <div>
+                            <h3 class="text-xl font-bold text-slate-900">Intern (Psychiatric Home)</h3>
+                            <h4 class="text-lg font-medium text-teal-600 mt-1">St. John Custodial and Psychiatric Home</h4>
+                        </div>
+                        <div class="mt-2 md:mt-0 inline-flex items-center px-3 py-1 rounded-full bg-slate-100 text-slate-600 text-sm font-medium">
+                            May 2024 – June 2024
+                        </div>
+                    </div>
+                    <p class="text-slate-500 mb-6 italic">Focused on patient monitoring and daily activity logging.</p>
+                    <div class="grid md:grid-cols-1 gap-3">
+                        <div class="flex items-start">
+                            <div class="min-w-[20px] pt-1"><div class="w-1.5 h-1.5 rounded-full bg-teal-400"></div></div>
+                            <span class="text-slate-700 leading-relaxed">Gained experience in detailed patient observation and accurate monitoring logging.</span>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="min-w-[20px] pt-1"><div class="w-1.5 h-1.5 rounded-full bg-teal-400"></div></div>
+                            <span class="text-slate-700 leading-relaxed">Facilitated weekly activities and recorded patient engagement data.</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section id="education" class="py-24 bg-white">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-12">Education</h2>
+            
+            <div class="relative bg-gradient-to-br from-slate-50 to-white p-10 rounded-3xl border border-slate-100 inline-block w-full max-w-2xl shadow-sm hover:shadow-lg transition-shadow">
+                <!-- Background Icon Watermark -->
+                <i data-lucide="graduation-cap" class="absolute top-4 right-4 text-slate-100 w-32 h-32 -rotate-12 pointer-events-none"></i>
+                
+                <div class="flex flex-col items-center relative z-10">
+                    <div class="w-16 h-16 bg-white border border-slate-100 shadow-sm rounded-2xl flex items-center justify-center text-teal-600 mb-6 rotate-3">
+                        <i data-lucide="graduation-cap" class="w-8 h-8"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-slate-900">Bachelor of Science in Psychology</h3>
+                    <p class="text-lg text-slate-600 mt-2 font-medium">Our Lady of Fatima University - Antipolo, Rizal</p>
+                    <p class="text-slate-400 mt-2 font-mono text-sm">2020 – 2024</p>
+                    
+                    <div class="mt-8 flex items-center justify-center space-x-2">
+                        <div class="h-px w-8 bg-amber-300"></div>
+                        <span class="text-amber-600 font-bold text-sm tracking-wider uppercase">Academic Excellence</span>
+                        <div class="h-px w-8 bg-amber-300"></div>
+                    </div>
+                    <p class="mt-3 text-slate-700 font-medium">Dean's Lister: 2nd Year (1st Sem) & 3rd Year (1st Sem)</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-24 bg-slate-900 text-white relative overflow-hidden">
+        <!-- Abstract Background Shapes -->
+        <div class="absolute top-0 right-0 w-96 h-96 bg-teal-900 rounded-full mix-blend-overlay filter blur-3xl opacity-20 -translate-y-1/2 translate-x-1/2"></div>
+        <div class="absolute bottom-0 left-0 w-96 h-96 bg-indigo-900 rounded-full mix-blend-overlay filter blur-3xl opacity-20 translate-y-1/2 -translate-x-1/2"></div>
+
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid md:grid-cols-2 gap-16 lg:gap-24">
+                <div>
+                    <h2 class="text-3xl md:text-4xl font-bold mb-6">Let's work together.</h2>
+                    <p class="text-slate-400 mb-10 leading-relaxed text-lg">
+                        I am actively seeking opportunities as a Data Entry Specialist. 
+                        I am ready to bring my organizational skills and dedication to your team immediately.
+                    </p>
+                    
+                    <div class="space-y-8">
+                        <div class="flex items-start space-x-6 group cursor-pointer" onclick="copyToClipboard('+63 9552714868', 'Phone number')">
+                            <div class="mt-1 bg-slate-800 p-3 rounded-2xl text-teal-400 group-hover:bg-teal-900 transition-colors">
+                                <i data-lucide="phone" class="w-6 h-6"></i>
+                            </div>
+                            <div>
+                                <p class="text-sm text-slate-500 font-medium uppercase tracking-wider">Phone</p>
+                                <p class="text-xl font-medium text-slate-200 group-hover:text-teal-400 transition-colors">
+                                    +63 9552714868
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start space-x-6 group cursor-pointer" onclick="copyToClipboard('leliesamper@gmail.com', 'Email')">
+                            <div class="mt-1 bg-slate-800 p-3 rounded-2xl text-teal-400 group-hover:bg-teal-900 transition-colors">
+                                <i data-lucide="mail" class="w-6 h-6"></i>
+                            </div>
+                            <div>
+                                <p class="text-sm text-slate-500 font-medium uppercase tracking-wider">Email</p>
+                                <p class="text-xl font-medium text-slate-200 group-hover:text-teal-400 transition-colors">
+                                    leliesamper@gmail.com
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start space-x-6">
+                            <div class="mt-1 bg-slate-800 p-3 rounded-2xl text-teal-400">
+                                <i data-lucide="map-pin" class="w-6 h-6"></i>
+                            </div>
+                            <div>
+                                <p class="text-sm text-slate-500 font-medium uppercase tracking-wider">Location</p>
+                                <p class="text-xl font-medium text-slate-200">
+                                    Rizal, Philippines
+                                </p>
+                                <p class="text-sm text-slate-500 mt-1">Vit Par Apartment, Quary Road, Pantok, Binangonan, Rizal</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-12 pt-10 border-t border-slate-800">
+                        <h4 class="text-sm font-semibold text-teal-500 uppercase tracking-wider mb-6">References</h4>
+                        <div class="bg-slate-800/50 p-6 rounded-2xl border border-slate-700/50 backdrop-blur-sm">
+                            <p class="font-bold text-white text-lg">Roy Paul L. Avila, MAEd, LPT</p>
+                            <p class="text-slate-400 text-sm mt-1">Practicum Adviser, OLFU - Antipolo Campus</p>
+                            <p class="text-slate-500 text-sm mt-2">+63 9173257716</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact Photo Placeholder -->
+                <div class="w-full h-full min-h-[500px] bg-slate-200 rounded-3xl shadow-2xl overflow-hidden group relative flex flex-col items-center justify-center border-4 border-slate-800/20">
+                    <!-- This div simulates the space where you will put your <img> tag later -->
+                    <!-- Example: <img src="your-image.jpg" class="w-full h-full object-cover" /> -->
+                    
+                    <div class="flex flex-col items-center justify-center text-slate-400">
+                           <span class="text-sm font-medium uppercase tracking-widest flex items-center gap-2">
+                            <img src="Allelie-Professional.png" alt="">
+                        </span>
+                  
+                    </div>
+
+                    <!-- Overlay for aesthetic depth -->
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent pointer-events-none"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-slate-950 text-slate-500 py-10 text-center text-sm border-t border-slate-900">
+        <p>&copy; 2026 Allelie Pamela S. Imasa. All rights reserved.</p>
+        <p class="mt-2 text-slate-600">Designed for Data Entry Excellence</p>
+    </footer>
+
+    <!-- Interactive Scripts -->
+    <script>
+        // Initialize Icons
+        lucide.createIcons();
+
+        // Menu Logic
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuIcon = document.getElementById('menu-icon');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+            if (mobileMenu.classList.contains('hidden')) {
+                menuIcon.setAttribute('data-lucide', 'menu');
+            } else {
+                menuIcon.setAttribute('data-lucide', 'x');
+            }
+            lucide.createIcons();
+        });
+
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+                menuIcon.setAttribute('data-lucide', 'menu');
+                lucide.createIcons();
+            });
+        });
+
+        // Notification Logic
+        function showNotification(message) {
+            const toast = document.getElementById('notification');
+            const text = document.getElementById('notification-text');
+            text.textContent = message;
+            toast.classList.remove('hidden');
+            // Force reflow for animation
+            void toast.offsetWidth; 
+            
+            setTimeout(() => {
+                toast.classList.add('hidden');
+            }, 3000);
+        }
+
+        // Clipboard Logic
+        function copyToClipboard(text, type) {
+            const textArea = document.createElement("textarea");
+            textArea.value = text;
+            document.body.appendChild(textArea);
+            textArea.select();
+            
+            try {
+                document.execCommand('copy');
+                showNotification(`${type} copied to clipboard!`);
+            } catch (err) {
+                console.error('Failed to copy', err);
+            }
+            
+            document.body.removeChild(textArea);
+        }
+
+        // Scroll Highlight Logic
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('.nav-link');
+            
+            let current = '';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (pageYOffset >= sectionTop - 150) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('text-teal-700', 'font-semibold');
+                link.classList.add('text-slate-500');
+                if (link.getAttribute('data-section') === current) {
+                    link.classList.remove('text-slate-500');
+                    link.classList.add('text-teal-700', 'font-semibold');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
